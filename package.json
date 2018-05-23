@@ -1,0 +1,29 @@
+{
+  "name": "estudiomusicajs",
+  "version": "1.0.0",
+  "description": "Protótipos TCC1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prisleey/PortalMusica.git"
+  },
+  "author": "Prisley Costa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prisleey/PortalMusica/issues"
+  },
+  "homepage": "https://github.com/Prisleey/PortalMusica#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.1",
+    "consign": "^0.1.6",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-validator": "^5.2.0",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.0.16"
+  }
+}
