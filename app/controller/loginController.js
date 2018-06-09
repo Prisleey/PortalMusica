@@ -1,16 +1,18 @@
 module.exports.login = function(application, req, res) {
+    
     var dadosFormLogin = req.body;
 
-    req.assert('documento', 'CPF é obrigatório.').notEmpty();
+    req.assert('login', 'Login é obrigatório.').notEmpty();
     req.assert('senha', 'Senha é obrigatório.').notEmpty();
 
     var errors = req.validationErrors();
 
-    if(errors) {
+    if(!errors) {
+        application.app.model.loginModel.verificarLogin(application, res, dadosFormLogin );
+        return;
+    } else {
         //res.send('Existem erros no formulário');
-        
-        res.render('login', { validacao : errors });
+        res.render('index', { validacao : errors });
         return;
     }
-    res.render('login.ejs');
 }
