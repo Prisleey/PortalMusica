@@ -22,8 +22,8 @@ CREATE TABLE estudiomusica.estudio (
 
 CREATE TABLE estudiomusica.estudio_horario_funcionamento (
     id_estudio INT,
-    horario_inicio TIME NOT NULL,
-    horario_fim TIME NOT NULL,
+    horario_inicio VARCHAR(10) NOT NULL,
+    horario_fim VARCHAR(10) NOT NULL,
     dias_semana VARCHAR(255) NOT NULL,
     FOREIGN KEY (id_estudio)
         REFERENCES estudiomusica.estudio (id_estudio)

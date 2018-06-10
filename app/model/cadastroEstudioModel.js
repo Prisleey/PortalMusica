@@ -1,0 +1,27 @@
+function CadastroModel(connection) {
+	this._connection = connection;
+}
+
+CadastroModel.prototype.getNoticias = function(callback) {
+	var sql = 'SELECT * FROM noticias';
+	this._connection.query(sql, callback);
+}
+CadastroModel.prototype.getDetalheNoticia = function(id_noticia, callback) {
+	var sql = 'SELECT * FROM noticias WHERE id_noticia = ' + id_noticia.id_noticia;
+	this._connection.query(sql, callback);
+}
+
+CadastroModel.prototype.cadastrarEstudio = function(estudio, callback) {
+    var sql = 'INSERT INTO estudio  VALUES ()';
+    console.log(estudio);
+	// this._connection.query(sql, estudio, callback);
+}
+
+CadastroModel.prototype.get5UltimasNoticias = function(callback) {
+	var sql = 'SELECT * FROM noticias ORDER BY data_criacao DESC LIMIT 5';
+	this._connection.query(sql, callback);
+}
+
+module.exports = function (application) { 
+	return CadastroModel;
+}
