@@ -4,22 +4,35 @@ module.exports.showCadastroEstudio = function(application, req, res) {
 
 module.exports.postCadastroEstudio = function(application, req, res) {
     var dadosFormEstudio = req.body;
+    var horarioFuncionamentoTb = dadosFormEstudio;
 
-    var jsonEstudio = new Array();
-    jsonEstudio = [{
-        nomeEstudio : dadosFormEstudio.nomeEstudio,
-        descricao : dadosFormEstudio.descricao,
-        estado : dadosFormEstudio.estado,
-        cidade : dadosFormEstudio.cidade,
-        bairro : dadosFormEstudio.bairro,
-        rua : dadosFormEstudio.rua,
-        cep : dadosFormEstudio.cep
-    }];
+    delete dadosFormEstudio.horarioFuncionamento; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
+    delete dadosFormEstudio.diaSemana;//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
+
+    delete horarioFuncionamentoTb.nomeEstudio;
+    delete horarioFuncionamentoTb.descricao;
+    delete horarioFuncionamentoTb.estado;
+    delete horarioFuncionamentoTb.cidade;
+    delete horarioFuncionamentoTb.bairro;
+    delete horarioFuncionamentoTb.rua;
+    delete horarioFuncionamentoTb.cep;
+
     var connection = application.config.db_connection();
     var cadastroEstudioModel = new application.app.model.cadastroEstudioModel(connection);
 
-    cadastroEstudioModel.cadastrarEstudio(JSON.stringify(jsonEstudio), function(error, result) {
-        console.log(error);
+    cadastroEstudioModel.cadastrarEstudio(dadosFormEstudio, function(error, result) {
+        //console.log(error);
         res.redirect('/'); //usar redirect no post, para não ter problema de reenviar formulário
+    });
+    
+    cadastroEstudioModel.getIdEstudio(dadosFormEstudio, function(error, result) {
+
+        horarioFuncionamentoTb.id_estudio = result.id_estudio;
+        console.log('RETORNO SQL: ' + result.id_estudio);
+
+        cadastroEstudioModel.inserirHorarioEstudio(horarioFuncionamentoTb, function(error, result) {
+            console.log(error);
+            // res.redirect('/'); //usar redirect no post, para não ter problema de reenviar formulário
+        });
     });
 }

@@ -12,8 +12,11 @@ CadastroSalaModel.prototype.listarSalaPorId = function(id_sala, callback) {
 }
 
 CadastroSalaModel.prototype.cadastrarSala = function(sala, callback) {
-    var sql = 'INSERT INTO sala SET ?';
-    this._connection.query(sql, sala, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
+	var sql = 'INSERT INTO sala SET ?';
+	this._connection.query(sql, sala, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
+	console.log('sala normal: ' + sala);
+	console.log('sala unescape: ' + unescape(sala));
+	console.log('sql: ' + sql);
 }
 
 module.exports = function (application) { 

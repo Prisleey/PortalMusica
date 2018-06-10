@@ -92,12 +92,12 @@
                         <div class="booking-checkbox_wrap">	
                             <form method="POST" action="/cadastro-sala">
                                 <div class="col-5">
-                                    <label for="estudio">Estúdio</label>
-                                    <select class="form-control" id="estudio" name="id_estudio" required>
-                                        <option val=''>Selecione Estúdio</option>
+                                    <label for="id_estudio">Estúdio</label>
+                                    <select class="form-control" id="id_estudio" name="id_estudio" required>
+                                        <option val="">Selecione Estúdio</option>
                                         <% if(estudios.length > 0) { %>
                                             <% for(var i = 0; i < estudios.length; i++) { %>
-                                                <option val='<%= estudios[i].id_estudio %>'><%= estudios[i].nomeEstudio %></option>
+                                                <option val="<%= estudios[i].id_estudio %>"><%= estudios[i].nomeEstudio %></option>
                                             <% } %>
                                         <% } %>
                                     </select>
