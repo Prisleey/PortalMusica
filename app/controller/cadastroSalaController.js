@@ -15,12 +15,12 @@ module.exports.postCadastroSala = function(application, req, res) {
 
     //criei esse array para tirar o id_sala, pois não preciso inserir ele, no banco ele é auto_increment.
     var jsonSala = new Array();
-    jsonSala = [{
+    jsonSala = {
         id_estudio : dadosFormEstudio.id_estudio,
         nome_sala : dadosFormEstudio.nome_sala,
         valor_sala : dadosFormEstudio.valor_sala,
         equipamento : dadosFormEstudio.equipamento
-    }];
+    };
 
     // conexão mysql
     var connection = application.config.db_connection();
