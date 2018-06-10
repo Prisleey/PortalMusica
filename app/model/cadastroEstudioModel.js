@@ -2,8 +2,8 @@ function CadastroModel(connection) {
 	this._connection = connection;
 }
 
-CadastroModel.prototype.getNoticias = function(callback) {
-	var sql = 'SELECT * FROM noticias';
+CadastroModel.prototype.listarEstudios = function(callback) {
+	var sql = 'SELECT * FROM estudio';
 	this._connection.query(sql, callback);
 }
 CadastroModel.prototype.getDetalheNoticia = function(id_noticia, callback) {
