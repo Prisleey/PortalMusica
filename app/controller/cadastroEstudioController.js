@@ -10,18 +10,16 @@ module.exports.postCadastroEstudio = function(application, req, res) {
     console.log(dadosFormEstudio.nomeEstudio);
     console.log("FIM LOG FORM ESTUDIO");
 
-    delete dadosFormEstudio.horarioFuncionamento; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
-    delete dadosFormEstudio.diaSemana;//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
+    delete dadosFormEstudio['horarioFuncionamento']; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
+    delete dadosFormEstudio['diaSemana']; //removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
 
-    delete horarioFuncionamentoTb.nomeEstudio;
-    delete horarioFuncionamentoTb.descricao;
-    delete horarioFuncionamentoTb.estado;
-    delete horarioFuncionamentoTb.cidade;
-    delete horarioFuncionamentoTb.bairro;
-    delete horarioFuncionamentoTb.rua;
-    delete horarioFuncionamentoTb.cep;
-
-    
+    delete horarioFuncionamentoTb['nomeEstudio'];
+    delete horarioFuncionamentoTb['descricao'];
+    delete horarioFuncionamentoTb['estado'];
+    delete horarioFuncionamentoTb['cidade'];
+    delete horarioFuncionamentoTb['bairro'];
+    delete horarioFuncionamentoTb['rua'];
+    delete horarioFuncionamentoTb['cep'];
 
     var connection = application.config.db_connection();
     var cadastroEstudioModel = new application.app.model.cadastroEstudioModel(connection);
