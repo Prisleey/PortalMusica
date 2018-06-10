@@ -12,9 +12,8 @@ CadastroModel.prototype.getDetalheNoticia = function(id_noticia, callback) {
 }
 
 CadastroModel.prototype.cadastrarEstudio = function(estudio, callback) {
-    var sql = 'INSERT INTO estudio  VALUES ()';
-    console.log(estudio);
-	// this._connection.query(sql, estudio, callback);
+    var sql = 'INSERT INTO estudio SET ?';
+    this._connection.query(sql, estudio, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
 }
 
 CadastroModel.prototype.get5UltimasNoticias = function(callback) {
