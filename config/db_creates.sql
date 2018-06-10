@@ -53,15 +53,15 @@ CREATE TABLE estudiomusica.agendamento (
     id_sala INT,
     id_musico INT,
     id_servico INT,
-    data_agendamento TIMESTAMP NOT NULL,
+    data_agendamento VARCHAR(255) NOT NULL,
     descricao VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_agendamento),
     FOREIGN KEY (id_estudio)
-        REFERENCES estudiomusica.estudio,
+        REFERENCES estudiomusica.estudio (id_estudio),
     FOREIGN KEY (id_sala)
-        REFERENCES estudiomusica.sala,
+        REFERENCES estudiomusica.sala (id_sala),
     FOREIGN KEY (id_musico)
-        REFERENCES estudiomusica.user,
+        REFERENCES estudiomusica.user (id),
     FOREIGN KEY (id_servico)
-        REFERENCES estudiomusica.servico
+        REFERENCES estudiomusica.servico (id_servico)
 );
