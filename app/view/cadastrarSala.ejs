@@ -93,7 +93,7 @@
                             <form method="POST" action="/cadastro-sala">
                                 <div class="col-5">
                                     <label for="estudio">Estúdio</label>
-                                    <select class="form-control" id="estudio" name="id_estudio">
+                                    <select class="form-control" id="estudio" name="id_estudio" required>
                                         <option val=''>Selecione Estúdio</option>
                                         <% if(estudios.length > 0) { %>
                                             <% for(var i = 0; i < estudios.length; i++) { %>
@@ -104,16 +104,16 @@
                                 </div>
                                 <div class="col-5">
                                     <label for="nome_sala">Nome da Sala</label>
-                                    <input class="form-control" id="nome_sala" type="text" name"nome_sala">
+                                    <input class="form-control" id="nome_sala" type="text" name"nome_sala" required>
                                 </div>
                                 <div class="col-5">
                                     <label for="valor_sala">Preço por hora</label>
-                                    <input class="form-control" id="valor_sala" type="number" name="valor_sala">
+                                    <input class="form-control" id="valor_sala" type="number" name="valor_sala" required>
                                 </div>
                                 <div class="col-5">
                                     <label for="equipamento">Equipamentos</label>
                                     <!-- SPLIT PARA SEPARAR OS EQUIPAMENTOS, PODE SALVAR COMO UMA STRING SO E DA SPLIT QUANDO FOR MEXER -->
-                                    <input class="form-control" id="equipamento" type="text" name="equipamento" placeholder='separe os equipamentos por virgula'>
+                                    <input class="form-control" id="equipamento" type="text" name="equipamento" placeholder='separe os equipamentos por virgula' required>
                                 </div>
                                 <br/>
                                 <button type="submit" class="btn btn-primary">Cadastrar Sala</button>

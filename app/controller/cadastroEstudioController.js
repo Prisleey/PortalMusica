@@ -34,9 +34,9 @@ module.exports.postCadastroEstudio = function(application, req, res) {
         cep : dadosFormEstudio.cep
     }];
     var connection = application.config.db_connection();
-    var cadastroModel = new application.app.model.cadastroEstudioModel(connection);
+    var cadastroEstudioModel = new application.app.model.cadastroEstudioModel(connection);
 
-    cadastroModel.cadastrarEstudio(JSON.stringify(jsonEstudio), function(error, result) {
+    cadastroEstudioModel.cadastrarEstudio(JSON.stringify(jsonEstudio), function(error, result) {
         console.log(error);
         res.redirect('/'); //usar redirect no post, para não ter problema de reenviar formulário
     });
