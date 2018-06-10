@@ -21,8 +21,8 @@ module.exports.postCadastroEstudio = function(application, req, res) {
     var cadastroEstudioModel = new application.app.model.cadastroEstudioModel(connection);
 
     cadastroEstudioModel.cadastrarEstudio(dadosFormEstudio, function(error, result) {
-        //console.log(error);
-        res.redirect('/'); //usar redirect no post, para não ter problema de reenviar formulário
+        console.log(error);
+        res.redirect('/cadastro-estudio'); //usar redirect no post, para não ter problema de reenviar formulário
     });
     
     cadastroEstudioModel.getIdEstudio(dadosFormEstudio, function(error, result) {
