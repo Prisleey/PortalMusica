@@ -17,6 +17,9 @@ CadastroEstudioModel.prototype.getIdEstudio = function(estudio, callback) {
 }
 
 CadastroEstudioModel.prototype.cadastrarEstudio = function(estudio, callback) {
+	console.log("VOU INICIAR O LOG DA NA MODEL DO ESTUDIO");
+    console.log(estudio);
+    console.log("FIM LOG MODEL ESTUDIO");
     var sql = 'INSERT INTO estudio SET ?';
     this._connection.query(sql, estudio, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
 }

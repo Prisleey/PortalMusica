@@ -4,22 +4,26 @@ module.exports.showCadastroEstudio = function(application, req, res) {
 
 module.exports.postCadastroEstudio = function(application, req, res) {
     var dadosFormEstudio = req.body;
-    var horarioFuncionamentoTb = dadosFormEstudio;
+    var horarioFuncionamentoTb = req.body;
 
-    console.log("VOU INICIAR O LOG DA FORM ESTUDIO ANTES DELETE");
-    console.log(dadosFormEstudio.nomeEstudio);
-    console.log("FIM LOG FORM ESTUDIO");
+    
 
-    delete dadosFormEstudio.horarioFuncionamento; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
-    delete dadosFormEstudio.diaSemana;//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
+    delete dadosFormEstudio["horarioFuncionamento"]; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
+    delete dadosFormEstudio["diaSemana"];//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
 
-    delete horarioFuncionamentoTb.nomeEstudio;
-    delete horarioFuncionamentoTb.descricao;
-    delete horarioFuncionamentoTb.estado;
-    delete horarioFuncionamentoTb.cidade;
-    delete horarioFuncionamentoTb.bairro;
-    delete horarioFuncionamentoTb.rua;
-    delete horarioFuncionamentoTb.cep;
+    console.log("VOU INICIAR O LOG DA NA controller DO ESTUDIO");
+    console.log(dadosFormEstudio);
+    console.log("FIM LOG controller ESTUDIO"); 
+
+    /*
+    delete horarioFuncionamentoTb["nomeEstudio"];
+    delete horarioFuncionamentoTb["descricao"];
+    delete horarioFuncionamentoTb["estado"];
+    delete horarioFuncionamentoTb["cidade"];
+    delete horarioFuncionamentoTb["bairro"];
+    delete horarioFuncionamentoTb["rua"];
+    delete horarioFuncionamentoTb["cep"];
+    */
 
     
 
