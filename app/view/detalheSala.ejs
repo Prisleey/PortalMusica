@@ -138,9 +138,20 @@
 							<p style='font-size:25px; font-weight:bold'>Equipamentos:</p>
 							<!-- gerado pelo banco de dados -->
 							<ul class="list-group">
-							  <li class="list-group-item">Bateria Mapex N80</li>
-							  <li class="list-group-item">Amp 12393x</li>
-							  <li class="list-group-item">Microfones xyz</li>
+							<%
+								var equipamentosSala = sala[0].equipamento.split(";");
+								console.log("FOI TESTE");
+								console.log(equipamentosSala);
+								if(equipamentosSala.length>0){
+									for(var i=0; i < equipamentosSala.length; i++){
+									
+							%>
+							
+							  <li class="list-group-item">equipamentosSala[i]</li>
+							 <%
+									}
+								}
+							%>
 							</ul>
 							<hr/>
 						</div>
