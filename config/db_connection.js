@@ -3,8 +3,8 @@ var mysql = require('mysql');
 var connMysql = function() {
     return mysql.createConnection({
         host : 'localhost',
-        user : 'prisley',
-        password : 'rootpris',
+        user : 'felipe_root',
+        password : 'root',
         database : 'estudiomusica'
     });
 }
