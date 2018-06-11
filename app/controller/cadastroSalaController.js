@@ -21,6 +21,6 @@ console.log(dadosFormSala);
 
     cadastroSalaModel.cadastrarSala(dadosFormSala, function(error, result) {
         console.log(error); // aqui tá retornando erro: 
-        res.redirect('/'); //após o insert é redirecionado para o index ('/') ou qualquer outro que quiser.
+        res.redirect('/cadastro-sala'); //após o insert é redirecionado para o index ('/') ou qualquer outro que quiser.
     });
 }

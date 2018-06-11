@@ -94,21 +94,21 @@
                                 <div class="col-5">
                                     <label for="id_estudio">Estúdio</label>
                                     <select class="form-control" id="id_estudio" name="id_estudio" required>
-                                        <option val="">Selecione Estúdio</option>
+                                        <option value="0">Selecione Estúdio</option>
                                         <% if(estudios.length > 0) { %>
                                             <% for(var i = 0; i < estudios.length; i++) { %>
-                                                <option val="<%= estudios[i].id_estudio %>"><%= estudios[i].nomeEstudio %></option>
+                                                <option value="<%= estudios[i].id_estudio %>"><%= estudios[i].nomeEstudio %></option>
                                             <% } %>
                                         <% } %>
                                     </select>
                                 </div>
                                 <div class="col-5">
                                     <label for="nome_sala">Nome da Sala</label>
-                                    <input class="form-control" id="nome_sala" type="text" name"nome_sala" required>
+                                    <input class="form-control" id="nome_sala" type="text" name="nome_sala" required>
                                 </div>
                                 <div class="col-5">
                                     <label for="valor_sala">Preço por hora</label>
-                                    <input class="form-control" id="valor_sala" type="number" name="valor_sala" required>
+                                    <input class="form-control" id="valor_sala" type="text" name="valor_sala" required>
                                 </div>
                                 <div class="col-5">
                                     <label for="equipamento">Equipamentos</label>

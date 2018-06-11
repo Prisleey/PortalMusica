@@ -12,11 +12,17 @@ CadastroSalaModel.prototype.listarSalaPorId = function(id_sala, callback) {
 }
 
 CadastroSalaModel.prototype.cadastrarSala = function(sala, callback) {
+	sala.id_estudio = parseInt(sala.id_estudio);
+	sala.valor_sala = parseFloat(sala.valor_sala);
+	console.log(parseFloat(sala.valor_sala));
+	console.log("CONSOLE LOG DA SALA");
+	console.log(sala);
+	console.log("FIM CONSOLE LOG SALA");
 	var sql = 'INSERT INTO sala SET ?';
 	this._connection.query(sql, sala, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
-	console.log('sala normal: ' + sala);
+	/*console.log('sala normal: ' + sala);
 	console.log('sala unescape: ' + unescape(sala));
-	console.log('sql: ' + sql);
+	console.log('sql: ' + sql);*/
 }
 
 module.exports = function (application) { 
