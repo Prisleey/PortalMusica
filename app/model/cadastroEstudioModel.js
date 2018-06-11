@@ -12,21 +12,18 @@ CadastroEstudioModel.prototype.listarEstudioPorId = function(id_estudio, callbac
 }
 
 CadastroEstudioModel.prototype.getIdEstudio = function(estudio, callback) {
-	var sql = 'SELECT id_estudio FROM estudio WHERE nomeEstudio = ? AND descricao = ? AND estado = ? AND cidade = ? AND bairro = ? AND rua = ? AND cep = ?';
-	this._connection.query(sql, [estudio.nomeEstudio, estudio.descricao, estudio.estado, estudio.cidade, estudio.bairro, estudio.rua, estudio.cep], callback);
+	var sql = "SELECT id_estudio FROM estudio WHERE nomeEstudio = '" + estudio.nomeEstudio + "'";
+	this._connection.query(sql, callback);
 }
 
 CadastroEstudioModel.prototype.cadastrarEstudio = function(estudio, callback) {
-	console.log("VOU INICIAR O LOG DA NA MODEL DO ESTUDIO");
-    console.log(estudio);
-    console.log("FIM LOG MODEL ESTUDIO");
     var sql = 'INSERT INTO estudio SET ?';
-    this._connection.query(sql, estudio, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
+    this._connection.query(sql, estudio, callback);
 }
 
 CadastroEstudioModel.prototype.inserirHorarioEstudio = function(estudio, callback) {
     var sql = 'INSERT INTO estudio_horario_funcionamento SET ?';
-    this._connection.query(sql, estudio, callback); // tá dando erro aqui para inserir, ER_PARSE_ERROR
+    this._connection.query(sql, estudio, callback);
 }
 
 module.exports = function (application) { 

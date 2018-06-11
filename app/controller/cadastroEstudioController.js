@@ -4,45 +4,32 @@ module.exports.showCadastroEstudio = function(application, req, res) {
 
 module.exports.postCadastroEstudio = function(application, req, res) {
     var dadosFormEstudio = req.body;
-    var horarioFuncionamentoTb = req.body;
+    var horarioFuncionamentoTb = new Array();
 
-    
+    var resultSplit = dadosFormEstudio.horarioFuncionamento.split(" - ");
+console.log(dadosFormEstudio.diaSemana);
+    horarioFuncionamentoTb = {
+        id_estudio : "",
+        horario_inicio : resultSplit[0],
+        horario_fim : resultSplit[1],
+        dias_semana : dadosFormEstudio.diaSemana
+    };
 
     delete dadosFormEstudio["horarioFuncionamento"]; //removi de dadosFormEstudio pois horarioFuncionamento não será inserido na mesma tabela
     delete dadosFormEstudio["diaSemana"];//removi de dadosFormEstudio pois diaSemana não será inserido na mesma tabela
-
-    console.log("VOU INICIAR O LOG DA NA controller DO ESTUDIO");
-    console.log(dadosFormEstudio);
-    console.log("FIM LOG controller ESTUDIO"); 
-
-    /*
-    delete horarioFuncionamentoTb["nomeEstudio"];
-    delete horarioFuncionamentoTb["descricao"];
-    delete horarioFuncionamentoTb["estado"];
-    delete horarioFuncionamentoTb["cidade"];
-    delete horarioFuncionamentoTb["bairro"];
-    delete horarioFuncionamentoTb["rua"];
-    delete horarioFuncionamentoTb["cep"];
-    */
-
-    
 
     var connection = application.config.db_connection();
     var cadastroEstudioModel = new application.app.model.cadastroEstudioModel(connection);
 
     cadastroEstudioModel.cadastrarEstudio(dadosFormEstudio, function(error, result) {
-        console.log(error);
         res.redirect('/cadastro-estudio'); //usar redirect no post, para não ter problema de reenviar formulário
     });
     
     cadastroEstudioModel.getIdEstudio(dadosFormEstudio, function(error, result) {
+        horarioFuncionamentoTb.id_estudio = result[0].id_estudio;
 
-        horarioFuncionamentoTb.id_estudio = result.id_estudio;
-        console.log('RETORNO SQL: ' + result.id_estudio);
-
-        cadastroEstudioModel.inserirHorarioEstudio(horarioFuncionamentoTb, function(error, result) {
+        cadastroEstudioModel.inserirHorarioEstudio(JSON.stringify(horarioFuncionamentoTb), function(error, result) {
             console.log(error);
-            // res.redirect('/'); //usar redirect no post, para não ter problema de reenviar formulário
         });
     });
 }
