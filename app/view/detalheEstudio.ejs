@@ -155,7 +155,7 @@
 						<div>
                             <h5>Serviço</h5>
                             <hr>
-							<select class='form-control'>
+							<select class='form-control' id='selectServico'>
 								 <option value="" disabled selected>Selectione o tipo de serviço desejado.</option>
                                     <% if(servicos.length > 0) { %>
                                         <% for(var i = 0; i < servicos.length; i++) { %>
@@ -172,7 +172,7 @@
                             <% if(salas.length > 0) { %>
                                 <% for(var i = 0; i < salas.length; i++) { %>
                                     <div>
-                                        <a href='detalhe-sala?id_estudio=<%= estudio[0].id_estudio %>&id_sala=<%= salas[i].id_sala %>'><%= salas[i].nome_sala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].id_estudio %>&id_sala=<%= salas[i].id_sala %>&id_servico='><%= salas[i].nome_sala %></a>
                                     </div>
                                 <% } %>
                             <% } %>
@@ -290,6 +290,20 @@
     <script src="js/jquery.magnific-popup.js"></script>
     <!-- Swipper Slider JS -->
     <script src="js/swiper.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#selectServico').on('change', function() {
+                var a = $(this).val();
+                var linkOriginal = $('.linkDetalheSala').attr('href');
+
+                console.log('link default:' + linkOriginal);
+
+                $('.linkDetalheSala').attr('href', linkOriginal+a);
+
+                console.log('link alterado: ' + $('.linkDetalheSala').attr('href'));
+            });
+        });
+    </script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
