@@ -5,12 +5,12 @@ module.exports.detalheSala = function(application, req, res) {
 
     var id_estudio = req.query.id_estudio;
     var id_sala = req.query.id_sala;
-    //var id_servico = req.query.id_servico;
+    var id_servico = req.query.id_servico;
 
 	var connection = application.config.db_connection();
     var estudioModel = new application.app.model.cadastroEstudioModel(connection);
     var salaModel = new application.app.model.cadastroSalaModel(connection);
-    //var servicoModel = new application.app.model.servicoModel(connection);
+    var servicoModel = new application.app.model.servicoModel(connection);
 
 	estudioModel.listarEstudioPorId(id_estudio, function(error, result) {
         salaModel.listarSalaPorId(id_sala, function(error, sala) {

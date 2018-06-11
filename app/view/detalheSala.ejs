@@ -139,15 +139,16 @@
 							<!-- gerado pelo banco de dados -->
 							<ul class="list-group">
 							<%
-								var equipamentosSala = sala[0].equipamento.split(";");
-								console.log("FOI TESTE");
+								var equipamentosSala = sala[0].equipamento.split(",");
+                                console.log("FOI TESTE");
+                                
 								console.log(equipamentosSala);
-								if(equipamentosSala.length>0){
-									for(var i=0; i < equipamentosSala.length; i++){
+								if(equipamentosSala.length > 0){
+									for(var i = 0; i < equipamentosSala.length; i++){
 									
 							%>
 							
-							  <li class="list-group-item">equipamentosSala[i]</li>
+							  <li class="list-group-item"><%= equipamentosSala[i]%></li>
 							 <%
 									}
 								}
