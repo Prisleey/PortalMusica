@@ -155,7 +155,7 @@
 						<div>
                             <h5>Serviço</h5>
                             <hr>
-							<select class='form-control' id='selectServico'>
+							<select class='form-control' id='selectServico' required>
 								 <option value="" disabled selected>Selectione o tipo de serviço desejado.</option>
                                     <% if(servicos.length > 0) { %>
                                         <% for(var i = 0; i < servicos.length; i++) { %>
@@ -172,7 +172,7 @@
                             <% if(salas.length > 0) { %>
                                 <% for(var i = 0; i < salas.length; i++) { %>
                                     <div>
-                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].id_estudio %>&id_sala=<%= salas[i].id_sala %>&id_servico='><%= salas[i].nome_sala %></a>
+                                        <a class='linkDetalheSala' href='detalhe-sala?id_estudio=<%= estudio[0].id_estudio %>&id_sala=<%= salas[i].id_sala %>&'><%= salas[i].nome_sala %></a>
                                     </div>
                                 <% } %>
                             <% } %>
@@ -292,15 +292,11 @@
     <script src="js/swiper.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            var linkOld = $('.linkDetalheSala').attr('href');
+
             $('#selectServico').on('change', function() {
-                var a = $(this).val();
-                var linkOriginal = $('.linkDetalheSala').attr('href');
-
-                console.log('link default:' + linkOriginal);
-
-                $('.linkDetalheSala').attr('href', linkOriginal+a);
-
-                console.log('link alterado: ' + $('.linkDetalheSala').attr('href'));
+                var varServico = 'id_servico=' + $(this).val();
+                $('.linkDetalheSala').attr('href', linkOld + varServico);
             });
         });
     </script>
