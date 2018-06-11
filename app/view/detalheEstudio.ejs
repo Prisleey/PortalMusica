@@ -38,52 +38,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html">Listing</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="icon-menu"></span>
-            </button>
+                        <a class="navbar-brand" href="index.html">Portal Música</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" 	aria-label="Toggle navigation">
+                            <span class="icon-menu"></span>
+                        </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Explore
-                   <span class="icon-arrow-down"></span>
-                 </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Listing
-                  <span class="icon-arrow-down"></span>
-                </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Pages
-                  <span class="icon-arrow-down"></span>
-                </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="cadastro-estudio">Cadastrar Estúdio</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">About</a>
+                                    <a class="nav-link" href="cadastro-sala">Cadastrar Sala</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Blog</a>
+                                    <a class="nav-link" href="#">Agendar</a>
                                 </li>
-                                <li><a href="#" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
+                                <li>
+                                    <a href="#" id='btLogin' class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#login-modal" > Logoff nok</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -142,7 +114,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Estúdio xyz</h5><br>
+                    <% if(estudio.length > 0) { %>
+                        <h5><%= estudio[0].nomeEstudio %></h5><br>
+                    <% } %>
                     <p class="reserve-description">Faça reservas, veja detalhes, comente, interaja.</p>
                 </div>
                 <div class="col-md-6">
@@ -167,36 +141,42 @@
                 <div class="col-md-8 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            <p>Estudio inaugurado em 2005, tendo desde sua criação como principal objetivo a gravação de bandas para o mundo profissional da música.</p>
+                            <!-- <p>Estudio inaugurado em 2005, tendo desde sua criação como principal objetivo a gravação de bandas para o mundo profissional da música.</p>
                             <p>Mickies has also been featured on “Todd’s Taste of the Town” during one of ESPN’s college football broadcasts. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding
                                 Chinese & Asian cuisine, excellent Chinese menu, and great restaurant specials. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding Chinese & Asian cuisine,
-                                excellent Chinese menu, and great restaurant specials.</p>
+                                excellent Chinese menu, and great restaurant specials.</p> -->
+                            <h5>Descrição</h5>
+                            <hr>
+                            <% if(estudio.length > 0) { %>
+                                <p><%= estudio[0].descricao %></p>
+                            <% } %>
                             <hr>
                         </div>
 						<div>
+                            <h5>Serviço</h5>
+                            <hr>
 							<select class='form-control'>
 								 <option value="" disabled selected>Selectione o tipo de serviço desejado.</option>
-								 <option>Gravação</option>
-								 <option>Ensaio</option>
-								 <option>Mixagem</option>
-							</select>
-							<br>
-							<h5>Salas:</h5>
-							<div>
-								<a href='salaDeatalhe.html?=1'>Sala 1</a>
-							</div>
-							<div>
-								<a href='salaDeatalhe.html?=1'>Sala 2</a>
-							</div>
-							<div>
-								<a href='salaDeatalhe.html?=1'>Sala 3</a>
-							</div>
-							<div>
-								<a href='salaDeatalhe.html?=1'>Sala 4</a>
-							</div>
-							<div>
-								<a href='salaDeatalhe.html?=1'>Sala 5</a>
-							</div>
+                                    <% if(servicos.length > 0) { %>
+                                        <% for(var i = 0; i < servicos.length; i++) { %>
+                                            <option value="<%= servicos[i].id_servico %>"><%= servicos[i].nome %></option>
+                                        <% } %>
+                                    <% } %>
+                            </select>
+                            <hr>
+                            <br>
+                            <div>
+                                <h5>Salas</h5>
+                            </div>
+                            <hr>
+                            <% if(salas.length > 0) { %>
+                                <% for(var i = 0; i < salas.length; i++) { %>
+                                    <div>
+                                        <a href='detalhe-sala?id_estudio=<%= estudio[0].id_estudio %>&id_sala=<%= salas[i].id_sala %>'><%= salas[i].nome_sala %></a>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                            <hr>
 						</div>
                     </div>
                     <div class="booking-checkbox_wrap mt-4">

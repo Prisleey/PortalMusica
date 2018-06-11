@@ -6,8 +6,15 @@ CadastroSalaModel.prototype.listarSalas = function(callback) {
 	var sql = 'SELECT * FROM sala';
 	this._connection.query(sql, callback);
 }
+
+CadastroSalaModel.prototype.listarSalasDeEstudioX = function(id_estudio, callback) {
+	var sql = 'SELECT * FROM sala WHERE id_estudio = ' + id_estudio;
+	console.log(sql);
+	this._connection.query(sql, callback);
+}
+
 CadastroSalaModel.prototype.listarSalaPorId = function(id_sala, callback) {
-	var sql = 'SELECT * FROM sala WHERE id_sala = ' + id_sala.id_sala;
+	var sql = 'SELECT * FROM sala WHERE id_sala = ' + id_sala;
 	this._connection.query(sql, callback);
 }
 

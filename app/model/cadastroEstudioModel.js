@@ -7,7 +7,7 @@ CadastroEstudioModel.prototype.listarEstudios = function(callback) {
 	this._connection.query(sql, callback);
 }
 CadastroEstudioModel.prototype.listarEstudioPorId = function(id_estudio, callback) {
-	var sql = 'SELECT * FROM estudio WHERE id_estudio = ' + id_estudio.id_estudio;
+	var sql = 'SELECT * FROM estudio WHERE id_estudio = ' + id_estudio;
 	this._connection.query(sql, callback);
 }
 
