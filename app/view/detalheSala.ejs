@@ -287,8 +287,8 @@
 				//startDate: moment().startOf('hour'),
 				//endDate: moment().startOf('hour').add(32, 'hour'),
 				locale: {
-				  format: 'DD/MM/YYYY',
-				  cancelLabel: 'Clear'
+                    format: 'DD/MM/YYYY',
+                    cancelLabel: 'Clear'
 				}
 			});
 			//$(".calendar-table").hide();
@@ -296,20 +296,26 @@
 			//	$(".calendar-table").hide();
 			//});
 			$("#horarioFuncionamento").daterangepicker({
-                    timePicker: true,
-                    timePicker24Hour: true,
-                    //startDate: moment().startOf('hour'),
-                    //endDate: moment().startOf('hour').add(32, 'hour'),
-                    locale: {
+                timePicker: true,
+                timePicker24Hour: true,
+                //startDate: moment().startOf('hour'),
+                //endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
                     format: 'hh:mm A',
                     cancelLabel: 'Clear'
-                    }
-                });
-                $("#horaroFuncionamento.calendar-table").hide();
-                $("#horarioFuncionamento").on('focus', function() {
-                    $("#horaroFuncionamento.calendar-table").hide();
-                });
-                $("#horarioFuncionamento").val("");
+                }
+            });
+
+            $("#horarioFuncionamento").on('focus', function () {
+                $(".calendar-table").eq(2).hide();
+                $(".calendar-table").eq(3).hide();
+            });
+
+            // $("#horaroFuncionamento.calendar-table").hide();
+            // $("#horarioFuncionamento").on('focus', function() {
+            //     $("#horaroFuncionamento.calendar-table").hide();
+            // });
+            // $("#horarioFuncionamento").val("");
 				
 			//SUBMIT	
 			$("#formAgendar").on("submit", function(e){
