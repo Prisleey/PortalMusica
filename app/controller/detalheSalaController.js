@@ -13,7 +13,7 @@ module.exports.detalheSala = function(application, req, res) {
     var servicoModel = new application.app.model.servicoModel(connection);
 
 	estudioModel.listarEstudioPorId(id_estudio, function(error, result) {
-        salaModel.listarSalaPorId(id_sala, function(error, sala) {
+    salaModel.listarSalaPorId(id_sala, function(error, sala) {
     //         servicoModel.listarSalasDeEstudioX(id_estudio, function(error, salas){
     //             console.log('sala: ');
     //             console.log(salas);
@@ -23,5 +23,26 @@ module.exports.detalheSala = function(application, req, res) {
             res.render('detalheSala.ejs', {estudio : result, sala : sala});
     //         });
         });
+    });
+
+    
+}
+
+//POST ONDE É FEITO INSERT DO AGENDAMENTO
+module.exports.postDetalheSala = function(application, req, res) {
+    var dadosFormSala = req.body;
+
+    dadosFormSala.id_estudio = parseInt(dadosFormSala.id_estudio);
+    dadosFormSala.id_sala = parseInt(dadosFormSala.id_sala);
+    dadosFormSala.id_servico = parseInt(dadosFormSala.id_servico);
+    dadosFormSala.id_musico = parseInt(dadosFormSala.id_musico);
+    
+    console.log(dadosFormSala);
+    var connection = application.config.db_connection();
+    var salaModel = new application.app.model.cadastroSalaModel(connection);
+
+    salaModel.agendar(dadosFormSala, function(error, result) {
+        console.log(error); // aqui tá retornando erro: 
+        res.redirect('/cadastro-sala'); //após o insert é redirecionado para o index ('/') ou qualquer outro que quiser.
     });
 }

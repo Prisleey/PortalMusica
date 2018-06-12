@@ -32,6 +32,10 @@ CadastroSalaModel.prototype.cadastrarSala = function(sala, callback) {
 	console.log('sql: ' + sql);*/
 }
 
+CadastroSalaModel.prototype.agendar = function(dadosDaSala, callback){
+	var sql = 'INSERT INTO agendamento SET ?';
+    this._connection.query(sql, dadosDaSala, callback);
+}
 module.exports = function (application) { 
 	return CadastroSalaModel;
 }
