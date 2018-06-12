@@ -13,19 +13,13 @@ module.exports.detalheSala = function(application, req, res) {
     var servicoModel = new application.app.model.servicoModel(connection);
 
 	estudioModel.listarEstudioPorId(id_estudio, function(error, result) {
-    salaModel.listarSalaPorId(id_sala, function(error, sala) {
-    //         servicoModel.listarSalasDeEstudioX(id_estudio, function(error, salas){
-    //             console.log('sala: ');
-    //             console.log(salas);
-    //             console.log('sala: ');
-            console.log(sala);
-            //aqui pensei em criar uma variavel pra equipamentos e daí faço o split... e mando como parametro para a detalheSala.ejs
-            res.render('detalheSala.ejs', {estudio : result, sala : sala});
-    //         });
-        });
-    });
+        salaModel.listarSalaPorId(id_sala, function(error, sala) {
+            servicoModel.listarServicoPorId(id_servico, function(error, servico){
 
-    
+                res.render('detalheSala.ejs', {estudio : result, sala : sala, servico : servico});
+            });
+        });
+    });    
 }
 
 //POST ONDE É FEITO INSERT DO AGENDAMENTO
@@ -43,6 +37,6 @@ module.exports.postDetalheSala = function(application, req, res) {
 
     salaModel.agendar(dadosFormSala, function(error, result) {
         console.log(error); // aqui tá retornando erro: 
-        res.redirect('/cadastro-sala'); //após o insert é redirecionado para o index ('/') ou qualquer outro que quiser.
+        res.redirect('/agendar');
     });
 }
