@@ -37,6 +37,6 @@ module.exports.postDetalheSala = function(application, req, res) {
 
     salaModel.agendar(dadosFormSala, function(error, result) {
         console.log(error); // aqui tá retornando erro: 
-        res.redirect('/agendar');
+        res.redirect('/agenda');
     });
 }

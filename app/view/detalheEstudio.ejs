@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html">Portal Música</a>
+                        <a class="navbar-brand" href="/">Portal Música</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" 	aria-label="Toggle navigation">
                             <span class="icon-menu"></span>
                         </button>
@@ -54,7 +54,7 @@
                                     <a class="nav-link" href="agenda">Agenda</a>
                                 </li>
                                 <li>
-                                    <a href="#" id='btLogin' class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#login-modal" > Logoff</a>
+                                    <a href="/" id='btLogin' class="btn btn-outline-light top-btn" data-toggle="modal" data-target="#login-modal" > Logoff</a>
                                 </li>
                             </ul>
                         </div>
@@ -147,7 +147,9 @@
                             <p>Mickies has also been featured on “Todd’s Taste of the Town” during one of ESPN’s college football broadcasts. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding
                                 Chinese & Asian cuisine, excellent Chinese menu, and great restaurant specials. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding Chinese & Asian cuisine,
                                 excellent Chinese menu, and great restaurant specials.</p> -->
-                            <h5>Descrição</h5>
+                            <div align="col-md-1">
+                                <h5>Descrição</h5>
+                            </div>
                             <% if(estudio.length > 0) { %>
                                 <p><%= estudio[0].descricao %></p>
                             <% } %>
