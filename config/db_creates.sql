@@ -42,6 +42,7 @@ CREATE TABLE estudiomusica.sala (
 
 CREATE TABLE estudiomusica.servico (
     id_servico INT AUTO_INCREMENT,
+	id_estudio int,
     nome VARCHAR(255) NOT NULL,
     preco DECIMAL(16 , 2 ) NOT NULL,
     PRIMARY KEY (id_servico)
@@ -54,6 +55,8 @@ CREATE TABLE estudiomusica.agendamento (
     id_musico INT,
     id_servico INT,
     data_agendamento VARCHAR(255) NOT NULL,
+	hora_inicio varchar(255),
+	hora_fim varchar(255),
     descricao VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_agendamento),
     FOREIGN KEY (id_estudio)

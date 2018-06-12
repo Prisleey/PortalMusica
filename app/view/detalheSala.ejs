@@ -157,36 +157,51 @@
 							<hr/>
 						</div>
 						<br>
-						<div class="col-5">
-							<label for="dataAgendamento">Data Agendamento</label>
-							<input class="form-control" id="dataAgendamento" name='dataAgendamento' type="text">
-						</div>
-						</br>
-						<hr>
-						<p style='font-size:25px; font-weight:bold'>Horários Disponíveis:</p>
-						<!-- Ao selecionar a data, dispara o evento que gera as checkboxes de horário, de acordo com os horários disponiveis -->
-						<div class="form-check">
-						  <label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00"> 10:00
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00"> 11:00
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00"> 12:00
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00"> 13:00
-						  </label>
-						</div>
-						<br/>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<form action='/detalhe-sala' id='formAgendar' method='post'>
+						
+							<!-- GAMBIARRA DA BRABA, SE PENSAR EM UMA MANEIRA MELHOR, PODE MUDAR (pegando os IDS para inserir depois no agendamento) -->
+							<input name='id_estudio' type='hidden' value='<%=sala[0].id_estudio%>' />
+							<input name='id_sala' type='hidden' value='<%=sala[0].id_sala%>' />
+							<input name='descricao' type='hidden' value='Ensaio' />
+							<input name='id_servico' type='hidden' value='1' />
+							<input name='id_musico' type='hidden' value='1' />
+							
+							<div class="col-5">
+								<label for="dataAgendamento">Data Agendamento</label>
+								<input class="form-control" id="dataAgendamento" name='data_agendamento' type="text">
+							</div>
+							</br>
+							<hr>
+							<div class="col-5">
+							<p style='font-size:25px; font-weight:bold'>Horários Agendamento:</p>
+							<!-- Ao selecionar a data, dispara o evento que gera as checkboxes de horário, de acordo com os horários disponiveis -->
+							<!--
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="10:00-11:00"> 10:00 - 11:00
+							  </label>
+							</div>
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="11:00-12:00"> 11:00 - 12:00
+							  </label>
+							</div>
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="12:00-13:00"> 12:00 - 13:00
+							  </label>
+							</div>
+							<div class="form-check">
+							  <label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name='hora1' id='hora1' value="13:00-14:00"> 13:00 - 14:00
+							  </label>
+							</div>
+							-->
+							<input type="text" class="form-control" id="horarioFuncionamento" name='horarioFuncionamento' placeholder="" readonly>
+							</div>
+							<br/>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
                     </div>
 					<!-- END //DESCROCAO E CHECKBOX -->
                 </div>
@@ -201,7 +216,7 @@
                 <div class="col-md-12">
                     <div class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright &copy; 2018 Listing. All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        <p>Copyright &copy; 2018 Listing. All rights reserved</p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <ul>
                             <li><a href="#"><span class="ti-facebook"></span></a></li>
@@ -279,6 +294,52 @@
 			//$("#horarioFuncionamento").on('focus', function() {
 			//	$(".calendar-table").hide();
 			//});
+			$("#horarioFuncionamento").daterangepicker({
+                    timePicker: true,
+                    timePicker24Hour: true,
+                    //startDate: moment().startOf('hour'),
+                    //endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                    format: 'hh:mm A',
+                    cancelLabel: 'Clear'
+                    }
+                });
+                $("#horaroFuncionamento.calendar-table").hide();
+                $("#horarioFuncionamento").on('focus', function() {
+                    $("#horaroFuncionamento.calendar-table").hide();
+                });
+                $("#horarioFuncionamento").val("");
+				
+			//SUBMIT	
+			$("#formAgendar").on("submit", function(e){
+			
+				
+				var hora_inicio = $("#horarioFuncionamento").val().split("-")[0].trim();
+				var hora_fim = $("#horarioFuncionamento").val().split("-")[1].trim();
+				
+				console.log("inicio "+hora_inicio);
+				console.log("fim" + hora_fim);
+				
+				$("#horarioFuncionamento").prop("disabled", true);
+				
+				alert("tentou submitar: " + $("#horarioFuncionamento").prop("disabled"));
+				
+				//https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
+				$('<input />').attr('type', 'hidden')
+				  .attr('name', "hora_inicio")
+				  .attr('value', hora_inicio)
+				  .appendTo('#formAgendar');
+				  
+				  $('<input />').attr('type', 'hidden')
+				  .attr('name', "hora_fim")
+				  .attr('value', hora_fim)
+				  .appendTo('#formAgendar');
+				  
+				  console.log($("#formAgendar"));
+				  
+				  return true;
+				  
+			});
 		});
 	</script>
 	<!--

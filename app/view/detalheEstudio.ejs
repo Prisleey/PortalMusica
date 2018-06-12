@@ -121,9 +121,11 @@
                 </div>
                 <div class="col-md-6">
                     <div class="reserve-seat-block">
+						<!--
                         <div class="reserve-rating">
                             <span>9.5</span>
                         </div>
+						-->
                         <div class="review-btn">
                             <a href="#" class="btn btn-outline-danger">Escreva uma Avaliação</a>
                             <span>34 reviews</span>
@@ -146,7 +148,6 @@
                                 Chinese & Asian cuisine, excellent Chinese menu, and great restaurant specials. We are one of the best Chinese restaurants in the New York, New York area. We have been recognized for our outstanding Chinese & Asian cuisine,
                                 excellent Chinese menu, and great restaurant specials.</p> -->
                             <h5>Descrição</h5>
-                            <hr>
                             <% if(estudio.length > 0) { %>
                                 <p><%= estudio[0].descricao %></p>
                             <% } %>
@@ -154,7 +155,6 @@
                         </div>
 						<div>
                             <h5>Serviço</h5>
-                            <hr>
 							<select class='form-control' id='selectServico' required>
 								 <option value="" disabled selected>Selectione o tipo de serviço desejado.</option>
                                     <% if(servicos.length > 0) { %>
@@ -163,12 +163,10 @@
                                         <% } %>
                                     <% } %>
                             </select>
-                            <hr>
                             <br>
                             <div>
-                                <h5>Salas</h5>
+                                <h5>Salas:</h5>
                             </div>
-                            <hr>
                             <% if(salas.length > 0) { %>
                                 <% for(var i = 0; i < salas.length; i++) { %>
                                     <div>
